@@ -61,6 +61,11 @@ stage_select.asm
 
 Assembler esperado:
 - Bass (fork `Dgdiniz/bass`)
+- Repositorio: https://github.com/Dgdiniz/bass
+
+Dependencia externa:
+- O assembler nao esta incluido neste repositorio.
+- Para compilar o projeto, baixe e use o `bass` desse fork.
 
 Build esperado:
 - montar `main.asm`

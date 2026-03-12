@@ -4,7 +4,7 @@
 // - Scheduler round-robin de 4 slots (JOB0..JOB3)
 // - VBlank only: chamado no NMI (reset.asm)
 // - 1 job por VBlank (RR 0/1/2/3) entre jobs habilitados
-// - Estado atual: JOB0 obrigatório; JOB1/JOB2/JOB3 opcionais via STAGE_TSWAP_JOBn_ENABLE
+// - Requer JOB0 habilitado quando STAGE_TSWAP_ENABLE = 1
 //
 // Slots (automático):
 // - SLOT0 = após Tiles_End alinhado
@@ -12,7 +12,7 @@
 //
 // JOB0: sempre SLOT0 (base tile constante)
 // JOB1: SLOT0 se sozinho; SLOT1 se conflita com JOB0 no mesmo BG (base tile em WRAM)
-// JOB2/JOB3: regra prática atual MAX2 (até 2 jobs por BG); em conflito excedente entra em fail seguro
+// JOB2/JOB3: regra MAX2 (ate 2 jobs por BG); em conflito excedente entra em fail seguro
 // JOB0: caminho de load direto/chunked/double-buffer conforme frame size
 // JOB0 multi-target:
 // - Se STAGE_TSWAP_JOB0_TARGET_COUNT > 1, o patch do tilemap é incremental (1 target por NMI).
@@ -21,8 +21,8 @@
 // - O patch inicial de targets e distribuido em varias chamadas do job (1 target por tick),
 //   para reduzir pico de custo no VBlank em cenarios com muitos targets.
 //
-// Regra atual de projeto:
-// - Máximo de 2 jobs por BG (config/layout padrão de cenários).
+// Regra de projeto:
+// - Maximo de 2 jobs por BG.
 // - Se houver 3 jobs no mesmo BG, JOB2/JOB3 falham de forma segura.
 //
 // Regras:
@@ -34,8 +34,8 @@
 
 constant TSWAP_ALIGN32_MASK = $FFE0
 
-// Contrato arquitetural atual:
-// - Nesta rodada, TileSwap assume JOB0 habilitado quando STAGE_TSWAP_ENABLE=1.
+// Contrato arquitetural:
+// - TileSwap assume JOB0 habilitado quando STAGE_TSWAP_ENABLE=1.
 if STAGE_TSWAP_ENABLE == 1 {
   if STAGE_TSWAP_JOB0_ENABLE == 0 {
     error "TileSwap atual requer STAGE_TSWAP_JOB0_ENABLE = 1"

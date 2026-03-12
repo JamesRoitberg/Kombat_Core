@@ -1,6 +1,6 @@
 // stage.asm
 // -----------------------------------------------------------------------------
-// Stage package template (default)
+// Stage package template
 // Pacote do stage:
 // - Assets (pal/chr/map) com labels canonicas esperadas pelo core
 // - Labels de frames FR0..FR7 para JOB0..JOB3 (TileSwap)
@@ -10,8 +10,7 @@
 
 // ============================================================================
 // Assets base do cenario
-// Nota: nesta fase (build-time stage select com 1 stage por ROM), os seeks fixos
-// abaixo sao seguros porque nao ha empacotamento simultaneo de multiplos stages.
+// Como 1 stage e montado por ROM, os seeks fixos abaixo nao conflitam.
 // ============================================================================
 
 // Bank: BG1 palette + tiles

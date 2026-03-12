@@ -1,6 +1,6 @@
 // config.asm
 // -----------------------------------------------------------------------------
-// Stage config (boilerplate)
+// Stage config
 // - Flags do stage
 // - Parallax/HDMA bands + ratios + offsets
 // - StageAnim motor:
@@ -38,7 +38,7 @@ constant STAGE_INPUT_WORLDX_SPEED = 1
 
 
 // ============================================================================
-// Stage WRAM block (boilerplate)
+// Stage WRAM block
 // - Padrão: $0200..$02FF (256 bytes)
 // - Não passar de $0700 (HDMA_CGRAM_* começa em $0700).
 // ============================================================================
@@ -69,7 +69,6 @@ constant REG_BG2SC   = $79
 // ============================================================================
 // HDMA bands (5 bandas)
 // Altura máxima por banda = 128 linhas
-// - B4 fica com 1 linha
 // - Garanta soma final de 224 linhas em BG1.
 // - Garanta soma final de 224 linhas em BG2.
 // ============================================================================
@@ -118,8 +117,8 @@ constant STAGE_BG2_Y_OFFSET = $0000
 // ----------------------------------------------------------------------------
 // Campos:
 // - ENABLE: 0/1
-// - TARGET_BG: 1=BG1, 2=BG2 (mantido por compatibilidade / futuro)
-// - BAND: 0..4 (B0..B4)      (mantido por compatibilidade / futuro)
+// - TARGET_BG: 1=BG1, 2=BG2
+// - BAND: 0..4 (B0..B4)
 // - DIR: 0=+ 1=-
 // - SPEED_INT: pixels/frame (word) (normalmente 0 ou 1)
 // - SPEED_FRAC: fração/256 (byte) ex.: 128=0.5 px/frame
@@ -131,9 +130,7 @@ constant STAGE_BG2_Y_OFFSET = $0000
 // - 0.25 px/frame => INT=0 FRAC=64
 // - 1.25 px/frame => INT=1 FRAC=64
 //
-// Nota:
-// - O motor atual aplica até 5 tracks.
-// - TARGET_BG e BAND ficam guardados aqui para evolução futura.
+// - O motor aplica ate 5 tracks por stage.
 // ============================================================================
 
 // Track0 (BG Band0)
@@ -199,7 +196,7 @@ constant STAGE_SCROLL_TRACK4_APPLY_MODE = 0
 // - BURST_STEPS = LEN * BURST_LOOPS (manter <= 255)
 // ============================================================================
 
-// CC0 (ON por default se STAGE_ENABLE_COLORCYCLE=1)
+// CC0
 constant STAGE_CC0_ENABLE = STAGE_ENABLE_COLORCYCLE
 
 constant STAGE_CC0_SUBPAL = 3
@@ -219,7 +216,7 @@ constant STAGE_CC0_OFF3 = 12
 constant STAGE_CC0_OFF4 = 8
 constant STAGE_CC0_OFF5 = 10
 
-// CC1 (OFF por default)
+// CC1
 constant STAGE_CC1_ENABLE = 0
 
 constant STAGE_CC1_SUBPAL = 5
@@ -238,7 +235,7 @@ constant STAGE_CC1_OFF3 = 12
 constant STAGE_CC1_OFF4 = 4
 constant STAGE_CC1_OFF5 = 5
 
-// CC2 (OFF por default)
+// CC2
 constant STAGE_CC2_ENABLE = 0
 
 constant STAGE_CC2_SUBPAL = 3
@@ -257,7 +254,7 @@ constant STAGE_CC2_OFF3 = 4
 constant STAGE_CC2_OFF4 = 5
 constant STAGE_CC2_OFF5 = 6
 
-// CC3 (OFF por default)
+// CC3
 constant STAGE_CC3_ENABLE = 0
 
 constant STAGE_CC3_SUBPAL = 4
@@ -345,10 +342,7 @@ constant STAGE_CGRAM_GRAD_ROUND_HIRES = (STAGE_CGRAM_GRAD_DENOM_HIRES / 2)      
 //   BG1 64x64: col 0..63, row 0..63
 //   BG2 64x32: col 0..63, row 0..31
 //
-// IMPORTANTE p/ manter o tileswap “caixa preta” com MAX_FRAMES=8:
-// - Garanta que existem labels FR0..FR7 no stage.asm do stage selecionado.
-//   Se você só tem 5 frames hoje, crie FR5..FR7 duplicando o último frame.
-//   (Assim o tileswap.asm pode ter tabela fixa de 8 sem você mexer nele.)
+// - Garanta labels FR0..FR7 no stage.asm para cada job ativo.
 //
 // GAP (pausa após terminar a sequência; em frames, ~60fps se só 1 job ativo)
 //  0    = sem pausa (loop infinito como antes)
@@ -361,17 +355,17 @@ constant STAGE_CGRAM_GRAD_ROUND_HIRES = (STAGE_CGRAM_GRAD_DENOM_HIRES / 2)      
 // Obs: com 2 jobs ativos, o job roda ~1x a cada 2 frames (pausa dobra);
 //      com 3 jobs, ~1x a cada 3 frames (pausa triplica).
 //
-// Estado atual do core (importante):
+// Regras do core:
 // - STAGE_TSWAP_ENABLE=1 requer STAGE_TSWAP_JOB0_ENABLE=1.
 // - JOB2/JOB3 fazem patch de targets em background (1 target por tick do job).
 // - Em listas grandes de targets, os ultimos alvos podem aparecer alguns frames
 //   depois do boot ate o patch inicial terminar.
 //
-// Regra de layout atual (cenarios padrao deste projeto):
+// Regra de layout:
 // - Máximo de 2 jobs no mesmo BG.
 // - Se 3 jobs apontarem para o mesmo BG, o JOB2 entra em fail seguro.
 //
-// Regra prática atual para JOB0:
+// JOB0 multi-target:
 // - Multi-target e suportado.
 // - Quando TARGET_COUNT > 1, o core patcha 1 target por NMI e desliga o double-buffer do JOB0.
 // - Para cenários novos, prefira DELAY >= TARGET_COUNT para o ciclo fechar sem artefato visual.

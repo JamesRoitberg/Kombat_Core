@@ -10,11 +10,11 @@
 // - Layout de VRAM do stage (VRAM_BG*)
 // - Registradores de setup PPU do stage (REG_BG*)
 //
-// Contrato opcional de TileSwap:
-// - Opcional por feature (somente quando STAGE_TSWAP_ENABLE == 1)
-// - Granular por job habilitado (STAGE_TSWAP_JOBN_ENABLE == 1)
-// - Cada job ativo valida Seq/Targets, FR0..FR7 e labels End exigidas pelo
-//   tileswap.asm atual
+// Contrato de TileSwap:
+// - So e validado quando STAGE_TSWAP_ENABLE == 1
+// - A validacao e granular por job habilitado (STAGE_TSWAP_JOBN_ENABLE == 1)
+// - Cada job ativo precisa expor Seq, Targets, FR0..FR7 e os labels End
+//   consumidos pelo tileswap.asm
 // -----------------------------------------------------------------------------
 
 // ============================================================================
@@ -52,8 +52,8 @@ constant STAGE_CONTRACT_REQ_REG_BG1SC      = REG_BG1SC
 constant STAGE_CONTRACT_REQ_REG_BG2SC      = REG_BG2SC
 
 // ============================================================================
-// Contrato opcional de TileSwap
-// - Só é obrigatório quando STAGE_TSWAP_ENABLE=1
+// Contrato de TileSwap
+// - So e validado quando STAGE_TSWAP_ENABLE=1
 // ============================================================================
 if STAGE_TSWAP_ENABLE == 1 {
   if STAGE_TSWAP_JOB0_ENABLE == 1 {

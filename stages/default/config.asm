@@ -32,7 +32,7 @@ constant STAGE_GRADIENT_CC_SAFE_TOGGLE = 1
 constant STAGE_ENABLE_COLORCYCLE = 0
 
 // Habilita ou desabilita motor do tileswap.
-// Nota: com STAGE_TSWAP_ENABLE=1, o core atual exige STAGE_TSWAP_JOB0_ENABLE=1.
+// Nota: com STAGE_TSWAP_ENABLE=1, o core exige STAGE_TSWAP_JOB0_ENABLE=1.
 constant STAGE_TSWAP_ENABLE = 0
 
 // Ajustes de movimentacao (stage/debug)
@@ -41,7 +41,7 @@ constant STAGE_INPUT_WORLDX_SPEED = 1
 
 
 // ============================================================================
-// Stage WRAM block (boilerplate)
+// Stage WRAM block
 // - Padrao: $0200..$02FF (256 bytes)
 // - Nao passar de $0700 (HDMA_CGRAM_* comeca em $0700).
 // ============================================================================

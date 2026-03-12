@@ -1,6 +1,6 @@
 // config.asm
 // -----------------------------------------------------------------------------
-// Stage config (boilerplate)
+// Stage config
 // - Flags do stage
 // - Layout de VRAM por stage
 // - Parallax/HDMA bands + ratios + offsets
@@ -40,7 +40,7 @@ constant STAGE_INPUT_WORLDX_SPEED = 1
 
 
 // ============================================================================
-// Stage WRAM block (boilerplate)
+// Stage WRAM block
 // - Padrao: $0200..$02FF (256 bytes)
 // - Nao passar de $0700 (HDMA_CGRAM_* comeca em $0700).
 // ============================================================================
@@ -51,7 +51,7 @@ constant STAGE_ANIM_WRAM_SIZE = $0100
 // ============================================================================
 // VRAM layout do stage (enderecos em bytes)
 // ----------------------------------------------------------------------------
-// Valores deste stage (pode vir de legado ou mapeamento novo).
+// Layout de VRAM deste stage.
 // ============================================================================
 constant VRAM_BG1_TILES = $0000
 constant VRAM_BG1_MAP = $7800
@@ -68,8 +68,6 @@ constant REG_BG2SC = $79
 // ============================================================================
 // HDMA bands (5 bandas)
 // Altura maxima por banda = 128 linhas
-// Compatibilidade com layout legado de 4 bandas:
-// - B4 fica com 1 linha
 // - Garanta soma final de 224 linhas em BG1/BG2.
 // ============================================================================
 constant BG1_BAND0_LINES = 79
@@ -319,11 +317,11 @@ constant STAGE_CGRAM_GRAD_ROUND_HIRES = (STAGE_CGRAM_GRAD_DENOM_HIRES / 2)
 // ----------------------------------------------------------------------------
 // Declare apenas os jobs realmente usados por este stage.
 // JOB2/JOB3 ficam OFF sem placeholders de assets/seq.
-// Estado atual do core:
+// Regras do core:
 // - STAGE_TSWAP_ENABLE=1 requer STAGE_TSWAP_JOB0_ENABLE=1.
 // - Scheduler RR: com N jobs ativos, cada job roda ~1x a cada N frames.
 // - JOB2/JOB3 fazem patch de targets em background (1 target por tick do job).
-// - Limite pratico atual: ate 2 jobs no mesmo BG.
+// - Limite pratico: ate 2 jobs no mesmo BG.
 // ============================================================================
 
 constant STAGE_TSWAP_JOB0_ENABLE = 1
