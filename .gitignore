@@ -1,0 +1,8 @@
+.vscode/
+*.swp
+*.swo
+*~
+
+rom/*.sfc
+rom/*.smc
+tempbasslsp.bin
