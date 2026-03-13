@@ -301,14 +301,16 @@ constant STAGE_CC3_IDX3 = (STAGE_CC3_BASE + STAGE_CC3_OFF3)
 constant STAGE_CC3_IDX4 = (STAGE_CC3_BASE + STAGE_CC3_OFF4)
 constant STAGE_CC3_IDX5 = (STAGE_CC3_BASE + STAGE_CC3_OFF5)
 
-
 // ============================================================================
-// CGRAM gradient (1 cor)
+// CGRAM gradient (1 cor) — parâmetros (usado pelo game.asm + macros.asm)
 // ============================================================================
-constant STAGE_BACKDROP_COLOR0 = $0000
+// Cor 0 do backdrop (CGRAM[0]) consumida pelo core/game.asm.
+// Ajuste aqui a cor de fundo principal do stage.
+constant STAGE_BACKDROP_COLOR0      = $0000
 
-constant STAGE_CGRAM_GRAD_CGADD = $00
-constant STAGE_CGRAM_GRAD_COLOR_B = $7FFF
+constant STAGE_CGRAM_GRAD_CGADD = $00                 // CGRAM color index (0..255)
+// Ajuste aqui a cor final do degradê do stage (BGR555)
+constant STAGE_CGRAM_GRAD_COLOR_B = $0026     // cor final (BGR555 word)
 
 constant STAGE_CGRAM_GRAD_LINES_PER_ENTRY = 2
 constant STAGE_CGRAM_GRAD_ENTRIES = (224 / STAGE_CGRAM_GRAD_LINES_PER_ENTRY)

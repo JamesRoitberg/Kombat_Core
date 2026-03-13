@@ -18,7 +18,8 @@
 // constant STAGE_BUILD_ID = 5 // The Waterfront
 // constant STAGE_BUILD_ID = 6 // The Armory
 // constant STAGE_BUILD_ID = 7 // Kahn's Arena
-constant STAGE_BUILD_ID = 7 // Stage Selecionado
+// constant STAGE_BUILD_ID = 8 // Kombat Tomb
+constant STAGE_BUILD_ID = 1 // Stage Selecionado
 
 if STAGE_BUILD_ID == 1 {
   include "stages/the_tower/stage.asm"
@@ -41,7 +42,11 @@ if STAGE_BUILD_ID == 1 {
             if STAGE_BUILD_ID == 7 {
               include "stages/kahns_arena/stage.asm"
             } else {
-              error "STAGE_BUILD_ID invalido: nenhum stage conhecido para este ID"
+              if STAGE_BUILD_ID == 8 {
+                include "stages/kombat_tomb/stage.asm"
+              } else {
+                error "STAGE_BUILD_ID invalido: nenhum stage conhecido para este ID"
+              }
             }
           }
         }

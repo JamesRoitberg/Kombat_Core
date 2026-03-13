@@ -202,10 +202,10 @@ constant STAGE_CC0_SUBPAL = 7
 constant STAGE_CC0_LEN = 2
 constant STAGE_CC0_DIR = 1
 constant STAGE_CC0_DELAY = 15
-constant STAGE_CC0_MODE   = 0
-constant STAGE_CC0_BURST_LOOPS = 3
+constant STAGE_CC0_MODE   = 2
+constant STAGE_CC0_BURST_LOOPS = 4
 constant STAGE_CC0_BURST_STEPS = (STAGE_CC0_LEN * STAGE_CC0_BURST_LOOPS)
-constant STAGE_CC0_PAUSE_FRAMES = 120
+constant STAGE_CC0_PAUSE_FRAMES = 30
 
 // Offsets dentro da subpaleta (0..15). Usa só os LEN primeiros.
 constant STAGE_CC0_OFF0 = 10
@@ -392,7 +392,7 @@ constant STAGE_TSWAP_JOB0_PAL_BITS = ((STAGE_TSWAP_JOB0_PAL << 10) | (STAGE_TSWA
 // - 2  ~= 30 fps (NTSC)
 // - 4  ~= 15 fps
 // - 8  ~= ~7.5 fps (bem lento)
-constant STAGE_TSWAP_JOB0_DELAY = 8
+constant STAGE_TSWAP_JOB0_DELAY = 7
 // Dica de tuning:
 // - Com JOB0 multi-target, mantenha DELAY >= TARGET_COUNT para reduzir risco de patch parcial.
 // Quantos frames existem/serão usados (0..7). Máx recomendado = 8.

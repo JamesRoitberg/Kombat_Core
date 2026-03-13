@@ -106,7 +106,7 @@ constant BG2_RATIO_B4 = $FF
 // ============================================================================
 constant STAGE_BG1_X_OFFSET = $0000
 constant STAGE_BG1_Y_OFFSET = $0000
-constant STAGE_BG2_X_OFFSET = $0018
+constant STAGE_BG2_X_OFFSET = $000E
 constant STAGE_BG2_Y_OFFSET = $0000
 
 
