@@ -76,17 +76,17 @@ constant REG_BG2SC   = $79
 // - Garanta soma final de 224 linhas em BG1.
 // - Garanta soma final de 224 linhas em BG2.
 // ============================================================================
-constant BG1_BAND0_LINES = 12
-constant BG1_BAND1_LINES = 119
-constant BG1_BAND2_LINES = 53
-constant BG1_BAND3_LINES = 35
-constant BG1_BAND4_LINES = 4
+constant BG1_BAND0_LINES = 8
+constant BG1_BAND1_LINES = 128
+constant BG1_BAND2_LINES = 49
+constant BG1_BAND3_LINES = 31
+constant BG1_BAND4_LINES = 8
 
 constant BG2_BAND0_LINES = 16
-constant BG2_BAND1_LINES = 56
-constant BG2_BAND2_LINES = 39
-constant BG2_BAND3_LINES = 40
-constant BG2_BAND4_LINES = 72
+constant BG2_BAND1_LINES = 54
+constant BG2_BAND2_LINES = 17
+constant BG2_BAND3_LINES = 24
+constant BG2_BAND4_LINES = 114
 
 
 // ============================================================================
@@ -94,7 +94,7 @@ constant BG2_BAND4_LINES = 72
 // - $80 ~= 0.5
 // - $FF ~= ~1.0 (255/256)
 // ============================================================================
-constant BG1_RATIO_B0 = $FA
+constant BG1_RATIO_B0 = $F0
 constant BG1_RATIO_B1 = $FC
 constant BG1_RATIO_B2 = $FC
 constant BG1_RATIO_B3 = $FE
@@ -102,9 +102,9 @@ constant BG1_RATIO_B4 = $FF
 
 constant BG2_RATIO_B0 = $FF
 constant BG2_RATIO_B1 = $80
-constant BG2_RATIO_B2 = $62
+constant BG2_RATIO_B2 = $30
 constant BG2_RATIO_B3 = $D0
-constant BG2_RATIO_B4 = $FF
+constant BG2_RATIO_B4 = $D0
 
 
 // ============================================================================
@@ -132,7 +132,7 @@ constant STAGE_BG2_Y_OFFSET = $0008
 
 // Track0
 constant STAGE_SCROLL_TRACK0_ENABLE = 0
-constant STAGE_SCROLL_TRACK0_TARGET_BG = 2
+constant STAGE_SCROLL_TRACK0_TARGET_BG = 1
 constant STAGE_SCROLL_TRACK0_BAND = 0
 constant STAGE_SCROLL_TRACK0_DIR = 0
 constant STAGE_SCROLL_TRACK0_SPEED_INT = 0
@@ -141,7 +141,7 @@ constant STAGE_SCROLL_TRACK0_WRAP_MASK = $01FF
 constant STAGE_SCROLL_TRACK0_APPLY_MODE = 0
 
 // Track1
-constant STAGE_SCROLL_TRACK1_ENABLE = 0
+constant STAGE_SCROLL_TRACK1_ENABLE = 1
 constant STAGE_SCROLL_TRACK1_TARGET_BG = 2
 constant STAGE_SCROLL_TRACK1_BAND = 1
 constant STAGE_SCROLL_TRACK1_DIR = 0
@@ -151,22 +151,22 @@ constant STAGE_SCROLL_TRACK1_WRAP_MASK = $01FF
 constant STAGE_SCROLL_TRACK1_APPLY_MODE = 0
 
 // Track2
-constant STAGE_SCROLL_TRACK2_ENABLE = 0
+constant STAGE_SCROLL_TRACK2_ENABLE = 1
 constant STAGE_SCROLL_TRACK2_TARGET_BG = 2
 constant STAGE_SCROLL_TRACK2_BAND = 2
-constant STAGE_SCROLL_TRACK2_DIR = 1
+constant STAGE_SCROLL_TRACK2_DIR = 0
 constant STAGE_SCROLL_TRACK2_SPEED_INT = 0
-constant STAGE_SCROLL_TRACK2_SPEED_FRAC = 128
+constant STAGE_SCROLL_TRACK2_SPEED_FRAC = 64
 constant STAGE_SCROLL_TRACK2_WRAP_MASK = $01FF
 constant STAGE_SCROLL_TRACK2_APPLY_MODE = 0
 
 // Track3
-constant STAGE_SCROLL_TRACK3_ENABLE = 0
+constant STAGE_SCROLL_TRACK3_ENABLE = 1
 constant STAGE_SCROLL_TRACK3_TARGET_BG = 2
 constant STAGE_SCROLL_TRACK3_BAND = 3
-constant STAGE_SCROLL_TRACK3_DIR = 0
+constant STAGE_SCROLL_TRACK3_DIR = 1
 constant STAGE_SCROLL_TRACK3_SPEED_INT = 0
-constant STAGE_SCROLL_TRACK3_SPEED_FRAC = 0
+constant STAGE_SCROLL_TRACK3_SPEED_FRAC = 128
 constant STAGE_SCROLL_TRACK3_WRAP_MASK = $01FF
 constant STAGE_SCROLL_TRACK3_APPLY_MODE = 0
 
@@ -311,7 +311,7 @@ constant STAGE_BACKDROP_COLOR0      = $0000
 
 constant STAGE_CGRAM_GRAD_CGADD = $00                 // CGRAM color index (0..255)
 // Ajuste aqui a cor final do degradê do stage (BGR555)
-constant STAGE_CGRAM_GRAD_COLOR_B =  $042D   // cor final (BGR555 word)
+constant STAGE_CGRAM_GRAD_COLOR_B =  $0475   // cor final (BGR555 word)
 
 constant STAGE_CGRAM_GRAD_LINES_PER_ENTRY = 2
 constant STAGE_CGRAM_GRAD_ENTRIES = (224 / STAGE_CGRAM_GRAD_LINES_PER_ENTRY)
@@ -334,10 +334,10 @@ constant STAGE_TSWAP_JOB0_ENABLE = 1
 constant STAGE_TSWAP_JOB0_TARGET_BG = 2
 constant STAGE_TSWAP_JOB0_W = 7
 constant STAGE_TSWAP_JOB0_H = 6
-constant STAGE_TSWAP_JOB0_PAL = 5
+constant STAGE_TSWAP_JOB0_PAL = 6
 constant STAGE_TSWAP_JOB0_PRIO = 0
 constant STAGE_TSWAP_JOB0_PAL_BITS = ((STAGE_TSWAP_JOB0_PAL << 10) | (STAGE_TSWAP_JOB0_PRIO << 13))
-constant STAGE_TSWAP_JOB0_DELAY = 8
+constant STAGE_TSWAP_JOB0_DELAY = 4
 constant STAGE_TSWAP_JOB0_NUM_FRAMES = 8
 constant STAGE_TSWAP_JOB0_GAP = 0
 
@@ -362,26 +362,33 @@ Stage_TSwapJob0_Targets_End:
 constant STAGE_TSWAP_JOB0_TARGET_COUNT = ((Stage_TSwapJob0_Targets_End - Stage_TSwapJob0_Targets) / 2)
 
 // JOB1
-constant STAGE_TSWAP_JOB1_ENABLE = 0
+constant STAGE_TSWAP_JOB1_ENABLE = 1
 constant STAGE_TSWAP_JOB1_TARGET_BG = 2
-constant STAGE_TSWAP_JOB1_W = 7
-constant STAGE_TSWAP_JOB1_H = 6
-constant STAGE_TSWAP_JOB1_PAL = 0
+constant STAGE_TSWAP_JOB1_W = 5
+constant STAGE_TSWAP_JOB1_H = 3
+constant STAGE_TSWAP_JOB1_PAL = 6
 constant STAGE_TSWAP_JOB1_PRIO = 0
 constant STAGE_TSWAP_JOB1_PAL_BITS = ((STAGE_TSWAP_JOB1_PAL << 10) | (STAGE_TSWAP_JOB1_PRIO << 13))
-constant STAGE_TSWAP_JOB1_DELAY = 8
+constant STAGE_TSWAP_JOB1_DELAY = 4
 constant STAGE_TSWAP_JOB1_NUM_FRAMES = 8
 constant STAGE_TSWAP_JOB1_GAP = 0
 
 Stage_TSwapJob1_Seq:
   db $00
+  db $01
+  db $02
+  db $03
+  db $04
+  db $05
+  db $06
+  db $07
 Stage_TSwapJob1_Seq_End:
 
 constant STAGE_TSWAP_JOB1_SEQ_LEN = (Stage_TSwapJob1_Seq_End - Stage_TSwapJob1_Seq)
 
 Stage_TSwapJob1_Targets:
-  db 0
-  db 0
+  db 22
+  db 12
 Stage_TSwapJob1_Targets_End:
 
 constant STAGE_TSWAP_JOB1_TARGET_COUNT = ((Stage_TSwapJob1_Targets_End - Stage_TSwapJob1_Targets) / 2)

@@ -19,7 +19,7 @@
 // constant STAGE_BUILD_ID = 6 // The Armory
 // constant STAGE_BUILD_ID = 7 // Kahn's Arena
 // constant STAGE_BUILD_ID = 8 // Kombat Tomb
-constant STAGE_BUILD_ID = 1 // Stage Selecionado
+constant STAGE_BUILD_ID = 8 // Stage Selecionado
 
 if STAGE_BUILD_ID == 1 {
   include "stages/the_tower/stage.asm"

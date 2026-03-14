@@ -92,35 +92,35 @@ TSWAP_JOB0_FR7_End:
 seek((TSWAP_JOB0_FR7_End + $001F) & $FFFFE0)
 
 TSWAP_JOB1_FR0:
-  insert "assets/tomb-anim-09.chr"
+  insert "assets/tomb-anim2-01.chr"
 TSWAP_JOB1_FR0_End:
 
 TSWAP_JOB1_FR1:
-  insert "assets/tomb-anim-10.chr"
+  insert "assets/tomb-anim2-02.chr"
 TSWAP_JOB1_FR1_End:
 
 TSWAP_JOB1_FR2:
-  insert "assets/tomb-anim-11.chr"
+  insert "assets/tomb-anim2-03.chr"
 TSWAP_JOB1_FR2_End:
 
 TSWAP_JOB1_FR3:
-  insert "assets/tomb-anim-12.chr"
+  insert "assets/tomb-anim2-04.chr"
 TSWAP_JOB1_FR3_End:
 
 TSWAP_JOB1_FR4:
-  insert "assets/tomb-anim-13.chr"
+  insert "assets/tomb-anim2-05.chr"
 TSWAP_JOB1_FR4_End:
 
 TSWAP_JOB1_FR5:
-  insert "assets/tomb-anim-14.chr"
+  insert "assets/tomb-anim2-06.chr"
 TSWAP_JOB1_FR5_End:
 
 TSWAP_JOB1_FR6:
-  insert "assets/tomb-anim-15.chr"
+  insert "assets/tomb-anim2-07.chr"
 TSWAP_JOB1_FR6_End:
 
 TSWAP_JOB1_FR7:
-  insert "assets/tomb-anim-16.chr"
+  insert "assets/tomb-anim2-08.chr"
 TSWAP_JOB1_FR7_End:
 
 
